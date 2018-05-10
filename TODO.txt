@@ -1,0 +1,4 @@
+TO DO:
+*Add game modes (Play, Create, ...)
+*Fix incorrect physics updating
+*Add force and mass

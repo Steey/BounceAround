@@ -1,2 +1,0 @@
-play mode
-level editor: grid (snapping?), can toggle through obstacle shapes (scroll wheel?) and place them by hand, set color(?)
