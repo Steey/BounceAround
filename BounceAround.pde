@@ -9,7 +9,7 @@ void setup() {
   size(800,600,P2D); 
   
   game = new Game(); //<>//
-  game.initialize();
+  //`game.initialize();
 }
 
 
@@ -20,7 +20,8 @@ void draw() {
   game.boundingBox();
   game.display(); //<>//
   
-  println(frameRate);
+  //println(frameRate);
+  //noLoop();
 }
 
 
@@ -42,6 +43,10 @@ void keyPressed() {
     game.ball.acceleration.y = -10;
     ++numKeysPressedY;
   }
+  
+  //if (key == ' ') {
+  //  game.ball.jump();
+  //}
 }
 
 void keyReleased() {

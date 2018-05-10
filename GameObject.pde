@@ -3,8 +3,9 @@ class GameObject {
   PVector position;
   PVector velocity;
   PVector acceleration;
-  ArrayList<PVector> forces; // ??????????
+  PVector netForce;
   float mass;
+  PVector temp;
   
   
   GameObject(PShape sh, float x, float y) {
@@ -12,7 +13,7 @@ class GameObject {
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
-    forces = new ArrayList<PVector>(0);
+    netForce = new PVector(0, 0);
   }
   GameObject(PShape sh, PVector p, PVector v, PVector a) {
     shape = sh;
@@ -22,11 +23,18 @@ class GameObject {
   }
 
   void update(float dt) {
-    position.x = position.x + velocity.x * dt;
-    position.y = position.y + velocity.y * dt;
-    velocity.x = velocity.x + acceleration.x * dt;
-    velocity.y = velocity.y + acceleration.y * dt;
-    //accel.x = accel.x + (forces.x / mass) * dt; // ???
+    
+    velocity.add(PVector.mult(acceleration, dt));
+    //temp = PVector.mult(acceleration, dt);
+    position.add(PVector.mult(velocity, dt));
+    //acceleration.mult(0);
+    
+    
+    //position.x = position.x + velocity.x * dt;
+    //position.y = position.y + velocity.y * dt;
+    //velocity.x = velocity.x + acceleration.x * dt;
+    //velocity.y = velocity.y + acceleration.y * dt;
+    ////accel.x = accel.x + (forces.x / mass) * dt; // ???
     
     
   }

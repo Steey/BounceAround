@@ -1,14 +1,18 @@
 class Game {
   float timestep; //time interval (maybe variable between frames???)
   float gravity;
+  float boxElasticity;
   ArrayList<GameObject> objects;
   Ball ball;
+
   
   Game() {
     timestep = 0.3;
-    gravity = 9.8; //Let's try to use real-world values maybe?
+    gravity = 3; //Let's try to use real-world values maybe?
+    boxElasticity = 0.8;
     objects = new ArrayList<GameObject>();
     ball = new Ball();
+    //ball = new Ball(50);
   }
   
   
@@ -25,12 +29,23 @@ class Game {
   
   void update() {
     //update all objects within the game
+    
+    applyGravity();
+    
     for (GameObject obj : objects) {
       obj.update(timestep);
     }
     ball.update(timestep);
     
     collisionDetection();
+  }
+  
+  void applyGravity() {
+    for (GameObject obj : objects) {
+      obj.acceleration.add(0, gravity*timestep);
+    }
+    
+    ball.acceleration.add(0, gravity*timestep);
   }
   
   void collisionDetection() {
@@ -44,26 +59,26 @@ class Game {
   }
   
   void boundingBox() {
-    if (game.ball.position.x < 50) {
-      game.ball.position.x = 50;
-      game.ball.velocity.x *= 0;
-    } else if (game.ball.position.x > width-50) {
-      game.ball.position.x = width-50;
-      game.ball.velocity.x *= 0;
+    if (ball.position.x < ball.radius) {
+      ball.position.x = ball.radius;
+      ball.velocity.x *= -boxElasticity;
+    } else if (ball.position.x > width-ball.radius) {
+      ball.position.x = width-ball.radius;
+      ball.velocity.x *= -boxElasticity;
     }
     
-    if (game.ball.position.y < 50) {
-      game.ball.position.y = 50;
-      game.ball.velocity.y *= 0;
-    } else if (game.ball.position.y > height-50) {
-      game.ball.position.y = height-50;
-      game.ball.velocity.y *= 0;
+    if (ball.position.y < ball.radius) {
+      ball.position.y = ball.radius;
+      ball.velocity.y *= -boxElasticity;
+    } else if (ball.position.y > height-ball.radius) {
+      ball.position.y = height-ball.radius;
+      ball.velocity.y *= -boxElasticity;
     } 
   }
   
   void display() {
     ball.show();
-    int count = 0;
+    //int count = 0;
     for (GameObject obj : objects) {
        obj.show(); 
        //println(++count);
