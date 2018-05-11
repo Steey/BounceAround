@@ -1,14 +1,14 @@
 class GameObject {
-  PShape shape;
-  PVector position;
-  PVector velocity;
-  PVector acceleration;
-  PVector netForce;
-  float mass;
-  PVector temp;
+  PShape shape; // Holds the geometrical structure of the object
+  PVector position; // Location of the object
+  PVector velocity; // Speed of the object
+  PVector acceleration; // Acceleration of the object
+  PVector netForce; // Sum of all forces exerted on the object resulting in a net force
+  float mass; // Mass of the object
   
   
   GameObject(PShape sh, float x, float y) {
+    // Constructor taking in a PShape object and its position
     shape = sh;
     position = new PVector(x, y);
     velocity = new PVector(0, 0);
@@ -16,6 +16,7 @@ class GameObject {
     netForce = new PVector(0, 0);
   }
   GameObject(PShape sh, PVector p, PVector v, PVector a) {
+    // Constructor taking in a PShape object and all of its physical attributes
     shape = sh;
     position = p;
     velocity = v;
@@ -23,9 +24,9 @@ class GameObject {
   }
 
   void update(float dt) {
+    // Updates the state of the object (position, velocity, acceleration, netForce)
     
     velocity.add(PVector.mult(acceleration, dt));
-    //temp = PVector.mult(acceleration, dt);
     position.add(PVector.mult(velocity, dt));
     //acceleration.mult(0);
     
@@ -40,15 +41,17 @@ class GameObject {
   }
   
   void show() {
+    // Draws the object on the screen
+    
     pushMatrix();
     translate(position.x, position.y);
     shape(shape);
     popMatrix(); 
-    //println(this.position.x, this.position.y);
   }
   
   boolean collides(GameObject obj) {
-    //println(this.position.dist(obj.position));
+    // Detects collision with another game object
+    
     if (this.position.dist(obj.position) <= this.shape.getWidth()/2 + obj.shape.getWidth()/2) {
       return true;
     } else {

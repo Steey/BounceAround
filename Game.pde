@@ -1,14 +1,14 @@
 class Game {
-  float timestep; //time interval (maybe variable between frames???)
-  float gravity;
-  float boxElasticity;
-  ArrayList<GameObject> objects;
-  Ball ball;
+  float timestep; // Physics' time interval (maybe variable between frames???)
+  float gravity; // Value of the gravitational force applied to all objects
+  float boxElasticity; // "Springiness" of the box (% of how much speed is retained upon collision)
+  ArrayList<GameObject> objects; // List of objects in the game
+  Ball ball; // The ball the user controls
 
   
   Game() {
     timestep = 0.3;
-    gravity = 3; //Let's try to use real-world values maybe?
+    gravity = 3; //// Let's try to use real-world values maybe?
     boxElasticity = 0.8;
     objects = new ArrayList<GameObject>();
     ball = new Ball();
@@ -17,7 +17,7 @@ class Game {
   
   
   void initialize() {
-    //add objects
+    // Creates circles with random location 
     for (int i = 0; i < 1; i++) {
       float size = random(100, 200);
       float posx = random(width);
@@ -28,7 +28,7 @@ class Game {
   }
   
   void update() {
-    //update all objects within the game
+    // Updates the states of all objects within the game
     
     applyGravity();
     
@@ -41,6 +41,8 @@ class Game {
   }
   
   void applyGravity() {
+    // Adds a gravitational force vector to all game objects
+   
     for (GameObject obj : objects) {
       obj.acceleration.add(0, gravity*timestep);
     }
@@ -49,6 +51,9 @@ class Game {
   }
   
   void collisionDetection() {
+    // Checks for collisions between the ball and other objects and
+    // inverts the velocity vector of the ball upon collision
+    
     for (int i = 0; i < objects.size(); i++) {
       if (ball.collides(objects.get(i))) {
         ball.velocity.x *= -1;
@@ -59,6 +64,10 @@ class Game {
   }
   
   void boundingBox() {
+    // Checks if the ball collides with any of the bounding walls and
+    // inverts and reduces the velocity on the respective axis if a 
+    // collision is detected
+    
     if (ball.position.x < ball.radius) {
       ball.position.x = ball.radius;
       ball.velocity.x *= -boxElasticity;
@@ -77,11 +86,12 @@ class Game {
   }
   
   void display() {
+    // Displays all game objects on the screen
+    
     ball.show();
-    //int count = 0;
+
     for (GameObject obj : objects) {
        obj.show(); 
-       //println(++count);
     }
   }
   
