@@ -8,8 +8,8 @@ class Game {
   
   Game() {
     timestep = 0.3;
-    gravity = 3; //// Let's try to use real-world values maybe?
-    boxElasticity = 0.8;
+    gravity = 9.8; //// Let's try to use real-world values maybe?
+    boxElasticity = 0.5;
     objects = new ArrayList<GameObject>();
     ball = new Ball();
     //ball = new Ball(50);

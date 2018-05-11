@@ -9,7 +9,7 @@ void setup() {
   size(800,600,P2D); 
   
   
-  game = new Game(); //<>// //<>//
+  game = new Game(); //<>//
   //game.initialize(); // Method not ready yet
 }
 
@@ -17,10 +17,11 @@ void setup() {
 void draw() {
   background(128);
   
-  game.update();   //<>// //<>//
+  game.update();   //<>//
   game.boundingBox(); // Should be called in game.update()
-  game.display(); //<>// //<>//
+  game.display(); //<>//
   
+  //println(game.ball.
 }
 
 
@@ -33,6 +34,7 @@ void draw() {
 void keyPressed() {
   // Adds acceleration to the ball in the direction accordingly to the pressed movement key
   // and increments the respective counter of pressed keys
+  /*
   if (keyCode == RIGHT || key == 'd') {
     game.ball.acceleration.x = 10;
     ++numKeysPressedX;
@@ -46,13 +48,15 @@ void keyPressed() {
     game.ball.acceleration.y = -10;
     ++numKeysPressedY;
   }
-  
+  */  
   // To be added when physics is computed correctly
   
-  //if (key == ' ') {
-  //  game.ball.jump();
-  //}
+  if (key == ' ') {
+    game.ball.jump();
+  }
 }
+
+/*
 
 void keyReleased() {
   // When a movement key is released, decrements the counter of pressed keys
@@ -83,3 +87,5 @@ void keyReleased() {
     game.ball.acceleration.y = -10;
   }
 }
+
+*/

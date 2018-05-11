@@ -28,13 +28,13 @@ class GameObject {
     
     velocity.add(PVector.mult(acceleration, dt));
     position.add(PVector.mult(velocity, dt));
-    //acceleration.mult(0);
+    acceleration.mult(0);
     
-    
-    //position.x = position.x + velocity.x * dt;
-    //position.y = position.y + velocity.y * dt;
     //velocity.x = velocity.x + acceleration.x * dt;
     //velocity.y = velocity.y + acceleration.y * dt;
+    //position.x = position.x + velocity.x * dt;
+    //position.y = position.y + velocity.y * dt;
+    
     ////accel.x = accel.x + (forces.x / mass) * dt; // ???
     
     

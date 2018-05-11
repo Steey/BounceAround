@@ -24,7 +24,7 @@ class Ball extends GameObject {
     
   void jump() {
     // Adds acceleration when the function is called upon pressing Spacebar
-    this.acceleration.add(0, -3);
+    this.acceleration.add(0, -100);
   }
   
 }
