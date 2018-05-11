@@ -51,9 +51,9 @@ void keyPressed() {
   */  
   // To be added when physics is computed correctly
   
-  if (key == ' ') {
-    game.ball.jump();
-  }
+  //if (key == ' ') {
+  //  game.ball.jump();
+  //}
 }
 
 /*
