@@ -22,13 +22,22 @@ class Game {
       float size = random(100, 200);
       float posx = random(width);
       float posy = random(height);
+      float mass = random(1, 2);
       
-      objects.add(new GameObject(createShape(ELLIPSE, 0, 0, size, size), posx, posy));
+      objects.add(new GameObject(createShape(ELLIPSE, 0, 0, size, size), posx, posy, mass));
     }
   }
   
+  
+  
   void update() {
     // Updates the states of all objects within the game
+    
+    if (ball.MOVE_RIGHT) {
+      ball.applyForce(10, 0);
+    } else if (ball.MOVE_LEFT) {
+      ball.applyForce(-10, 0);
+    }
     
     applyGravity();
     

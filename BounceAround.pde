@@ -34,58 +34,83 @@ void draw() {
 void keyPressed() {
   // Adds acceleration to the ball in the direction accordingly to the pressed movement key
   // and increments the respective counter of pressed keys
-  /*
+  
   if (keyCode == RIGHT || key == 'd') {
-    game.ball.acceleration.x = 10;
+    //game.ball.acceleration.x = 10;
+    game.ball.MOVE_RIGHT = true;
+    game.ball.MOVE_LEFT = false;
+    println("MOVE_RIGHT = true");
+    println("MOVE_LEFT = false");
+    println("=================");
     ++numKeysPressedX;
   } else if (keyCode == LEFT || key == 'a') {
-    game.ball.acceleration.x = -10;
+    game.ball.MOVE_LEFT = true;
+    game.ball.MOVE_RIGHT = false;
+    println("MOVE_LEFT = true");
+    println("MOVE_RIGHT = false");
+    println("=================");
     ++numKeysPressedX;
-  } else if (keyCode == DOWN || key == 's') {
-    game.ball.acceleration.y = 10;
-    ++numKeysPressedY;
-  } else if (keyCode == UP || key == 'w') {
-    game.ball.acceleration.y = -10;
-    ++numKeysPressedY;
-  }
-  */  
+  } //else if (keyCode == DOWN || key == 's') {
+  //  game.ball.ACC_FLAG_Y = 1;
+  //  ++numKeysPressedY;
+  //} else if (keyCode == UP || key == 'w') {
+  //  game.ball.ACC_FLAG_Y = -1;
+  //  ++numKeysPressedY;
+  //}
+  
   // To be added when physics is computed correctly
   
-  //if (key == ' ') {
-  //  game.ball.jump();
-  //}
+  if (key == ' ') {
+    game.ball.jump(); // <--- More like this
+    //game.ball.JUMP_FLAG = true;
+  }
 }
 
-/*
+
 
 void keyReleased() {
   // When a movement key is released, decrements the counter of pressed keys
   // and if all the keys on the axis are released, sets the ball's acceleration to 0
   // X axis
-  if (keyCode == RIGHT || keyCode == LEFT || key == 'd' || key == 'a') {
-    if (--numKeysPressedX <= 0) {
-      game.ball.acceleration.x = 0;
-    }
-  }
+  //if (keyCode == RIGHT || keyCode == LEFT || key == 'd' || key == 'a') {
+  //  if (--numKeysPressedX <= 0) {
+  //    game.ball.ACC_FLAG_X = 0;
+  //  }
+  //}
+  //if (keyCode == RIGHT || key == 'd') {
+  //  if (--numKeysPressedX <= 0) {
+  //    game.ball.MOVE_RIGHT = false;
+  //  }
+  //}
   // Y axis
-  if (keyCode == DOWN || keyCode == UP || key == 's' || key == 'w') {
-    if (--numKeysPressedY <= 0) {
-      game.ball.acceleration.y = 0;
-    }
-  }
+  //if (keyCode == DOWN || keyCode == UP || key == 's' || key == 'w') {
+  //  if (--numKeysPressedY <= 0) {
+  //    game.ball.ACC_FLAG_Y = 0;
+  //  }
+  //}
 
-  // If a movement key is released but there are still other movement keys pressed on that
+  // If a movement key is released but other movement keys are still pressed on that
   // axis (direction), a set amount of acceleration is substracted from ball's acceleration
   // on that axis.
-  if ((keyCode == RIGHT || key == 'd') && numKeysPressedX > 0) {
-    game.ball.acceleration.x = -10;
-  } else if ((keyCode == LEFT || key == 'a') && numKeysPressedX > 0) {
-    game.ball.acceleration.x = 10;
-  } else if ((keyCode == DOWN || key == 's') && numKeysPressedY > 0) {
-    game.ball.acceleration.y = 10;
-  } else if ((keyCode == UP || key == 'w') && numKeysPressedY > 0) {
-    game.ball.acceleration.y = -10;
-  }
+  if (keyCode == RIGHT || key == 'd') {
+    game.ball.MOVE_RIGHT = false;
+    println("MOVE_RIGHT = false");
+    if (--numKeysPressedX > 0) {
+      game.ball.MOVE_LEFT = true;
+      println("MOVE_LEFT = true");
+    }
+    println("==================");
+  } else if (keyCode == LEFT || key == 'a') {
+    game.ball.MOVE_LEFT = false;
+    println("MOVE_LEFT = false");
+    if (--numKeysPressedX > 0) {
+      game.ball.MOVE_RIGHT = true;
+      println("MOVE_RIGHT = true");
+    }
+    println("==================");
+  } //else if ((keyCode == DOWN || key == 's') && numKeysPressedY > 0) {
+  //  game.ball.ACC_FLAG_Y = 1;
+  //} else if ((keyCode == UP || key == 'w') && numKeysPressedY > 0) {
+  //  game.ball.ACC_FLAG_Y = -1;
+  //}
 }
-
-*/

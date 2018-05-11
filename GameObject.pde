@@ -7,28 +7,31 @@ class GameObject {
   float mass; // Mass of the object
   
   
-  GameObject(PShape sh, float x, float y) {
+  GameObject(PShape shape, float x, float y, float mass) {
     // Constructor taking in a PShape object and its position
-    shape = sh;
-    position = new PVector(x, y);
-    velocity = new PVector(0, 0);
-    acceleration = new PVector(0, 0);
-    netForce = new PVector(0, 0);
+    this.shape = shape;
+    this.position = new PVector(x, y);
+    this.velocity = new PVector(0, 0);
+    this.acceleration = new PVector(0, 0);
+    this.netForce = new PVector(0, 0);
+    this.mass = mass;
   }
-  GameObject(PShape sh, PVector p, PVector v, PVector a) {
-    // Constructor taking in a PShape object and all of its physical attributes
-    shape = sh;
-    position = p;
-    velocity = v;
-    acceleration = a;
-  }
+  //GameObject(PShape sh, PVector p, PVector v, PVector a) {
+  //  // Constructor taking in a PShape object and all of its physical attributes
+  //  shape = sh;
+  //  position = p;
+  //  velocity = v;
+  //  acceleration = a;
+  //}
 
   void update(float dt) {
     // Updates the state of the object (position, velocity, acceleration, netForce)
     
+    acceleration.add(PVector.mult(PVector.div(netForce, mass), dt));
     velocity.add(PVector.mult(acceleration, dt));
     position.add(PVector.mult(velocity, dt));
     acceleration.mult(0);
+    netForce.mult(0);
     
     //velocity.x = velocity.x + acceleration.x * dt;
     //velocity.y = velocity.y + acceleration.y * dt;
@@ -58,5 +61,14 @@ class GameObject {
       return false;
     }
   }
+  
+  void applyForce(PVector force) {
+    this.netForce.add(force);
+  }
+  void applyForce(float fx, float fy) {
+    this.netForce.x += fx;
+    this.netForce.y += fy;
+  }
+
   
 }

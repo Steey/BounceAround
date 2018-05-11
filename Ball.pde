@@ -1,16 +1,25 @@
 class Ball extends GameObject {
   float radius;
+  boolean MOVE_RIGHT;
+  boolean MOVE_LEFT;
+  boolean JUMP_FLAG;
   
   Ball() {
     // Creates a PShape object in a GameObject constructor with a default radius
-    super(createShape(ELLIPSE, 0, 0, 100, 100), new PVector(width/2, height/2), new PVector(0, 0), new PVector(0, 0));
+    super(createShape(ELLIPSE, 0, 0, 100, 100), width/2, height/2, 1);
     this.radius = 50;
+    this.MOVE_RIGHT = false;
+    this.MOVE_LEFT = false;
+    this.JUMP_FLAG = false;
   }
   
   Ball(float radius) {
     // Creates a PShape object in a GameObject constructor with a set radius
-    super(createShape(ELLIPSE, 0, 0, 2*radius, 2*radius), new PVector(width/2, height/2), new PVector(0, 0), new PVector(0, 0));
+    super(createShape(ELLIPSE, 0, 0, 2*radius, 2*radius), width/2, height/2, 1);
     this.radius = radius;
+    this.MOVE_RIGHT = false;
+    this.MOVE_LEFT = false;
+    this.JUMP_FLAG = false;
   }
   
     
@@ -24,7 +33,9 @@ class Ball extends GameObject {
     
   void jump() {
     // Adds acceleration when the function is called upon pressing Spacebar
-    this.acceleration.add(0, -100);
+    this.velocity.add(0, -50);
   }
+  
+  
   
 }
