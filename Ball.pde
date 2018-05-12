@@ -22,18 +22,27 @@ class Ball extends GameObject {
     this.JUMP_FLAG = false;
   }
   
+  Ball(float radius, float x, float y, float mass) {
+    super(createShape(ELLIPSE, 0, 0, 2*radius, 2*radius), x, y, mass);
+    this.radius = radius;
+    this.mass = mass;
+    this.MOVE_RIGHT = false;
+    this.MOVE_LEFT = false;
+    this.JUMP_FLAG = false;
+  }
+  
     
   void show() {
     // Sets a color specific to the ball
-    this.shape.setFill(color(255, 0, 0));
+    this.shape.setFill(color(255, 0, 0, 128));
     // Calls a GameObject.show() method to handle the displaying
     super.show();
   }
     
     
   void jump() {
-    // Adds acceleration when the function is called upon pressing Spacebar
-    this.velocity.add(0, -50);
+    // Adds vertical velocity when the function is called upon pressing Spacebar
+    this.velocity.add(0, -35);
   }
   
   

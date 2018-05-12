@@ -4,27 +4,32 @@ class Game {
   float boxElasticity; // "Springiness" of the box (% of how much speed is retained upon collision)
   ArrayList<GameObject> objects; // List of objects in the game
   Ball ball; // The ball the user controls
+  ArrayList<Ball> balls;
 
   
   Game() {
     timestep = 0.3;
     gravity = 9.8; //// Let's try to use real-world values maybe?
-    boxElasticity = 0.5;
+    boxElasticity = 0.8;
     objects = new ArrayList<GameObject>();
     ball = new Ball();
     //ball = new Ball(50);
+    balls = new ArrayList<Ball>();
   }
   
   
   void initialize() {
     // Creates circles with random location 
-    for (int i = 0; i < 1; i++) {
-      float size = random(100, 200);
-      float posx = random(width);
-      float posy = random(height);
-      float mass = random(1, 2);
+    for (int i = 0; i < 6; i++) {
+      float radius = random(10, 50);
+      float posx = random((i+1)*width/6);
+      //float posy = random(height);
+      float posy = height/2;
+      //float mass = random(1, 10);
       
-      objects.add(new GameObject(createShape(ELLIPSE, 0, 0, size, size), posx, posy, mass));
+      balls.add(new Ball(radius, posx, posy, radius/10));
+      
+      
     }
   }
   
@@ -44,20 +49,33 @@ class Game {
     for (GameObject obj : objects) {
       obj.update(timestep);
     }
+    
+    for (Ball b : balls) {
+      b.update(timestep);
+    }
+    
     ball.update(timestep);
     
     collisionDetection();
   }
   
+  
+  
   void applyGravity() {
     // Adds a gravitational force vector to all game objects
    
     for (GameObject obj : objects) {
-      obj.acceleration.add(0, gravity*timestep);
+      obj.applyForce(0, gravity*obj.mass);
     }
     
-    ball.acceleration.add(0, gravity*timestep);
+    for (Ball b : balls) {
+      b.applyForce(0, gravity*b.mass);
+    }
+    
+    ball.applyForce(0, gravity*ball.mass);
   }
+  
+  
   
   void collisionDetection() {
     // Checks for collisions between the ball and other objects and
@@ -71,6 +89,8 @@ class Game {
       }
     }
   }
+  
+  
   
   void boundingBox() {
     // Checks if the ball collides with any of the bounding walls and
@@ -92,7 +112,27 @@ class Game {
       ball.position.y = height-ball.radius;
       ball.velocity.y *= -boxElasticity;
     } 
+    
+    for (Ball ball : balls) {
+      if (ball.position.x < ball.radius) {
+        ball.position.x = ball.radius;
+        ball.velocity.x *= -boxElasticity;
+      } else if (ball.position.x > width-ball.radius) {
+        ball.position.x = width-ball.radius;
+        ball.velocity.x *= -boxElasticity;
+      }
+      
+      if (ball.position.y < ball.radius) {
+        ball.position.y = ball.radius;
+        ball.velocity.y *= -boxElasticity;
+      } else if (ball.position.y > height-ball.radius) {
+        ball.position.y = height-ball.radius;
+        ball.velocity.y *= -boxElasticity;
+      } 
+    }
   }
+  
+  
   
   void display() {
     // Displays all game objects on the screen
@@ -101,6 +141,10 @@ class Game {
 
     for (GameObject obj : objects) {
        obj.show(); 
+    }
+    
+    for (Ball b : balls) {
+       b.show(); 
     }
   }
   
