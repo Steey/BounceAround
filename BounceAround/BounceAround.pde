@@ -5,11 +5,12 @@ Game game;
 int numKeysPressedX = 0;
 int numKeysPressedY = 0;
 
+
 void setup() {
   size(800,600,P2D); 
   
   
-  game = new Game(); //<>//
+  game = new Game();
   game.initialize(); // Method not ready yet
 }
 
@@ -17,9 +18,13 @@ void setup() {
 void draw() {
   background(128);
   
-  game.update();   //<>//
+  //game.ball.MOVE_RIGHT = true;
+  game.update();  
   game.boundingBox(); // Should be called in game.update()?
-  game.display(); //<>//
+  game.display();
+  
+  //println(game.ball.velocity.x);
+  println(game.ball.position.x);
   
 }
 

@@ -27,7 +27,7 @@ class Game {
       float posy = height/2;
       //float mass = random(1, 10);
       
-      balls.add(new Ball(radius, posx, posy, radius/10));
+      //balls.add(new Ball(radius, posx, posy, radius/10));
       
       
     }

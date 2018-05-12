@@ -3,6 +3,7 @@ class Ball extends GameObject {
   boolean MOVE_RIGHT;
   boolean MOVE_LEFT;
   boolean JUMP_FLAG;
+
   
   Ball() {
     // Creates a PShape object in a GameObject constructor with a default radius

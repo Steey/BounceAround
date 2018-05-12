@@ -26,21 +26,17 @@ class GameObject {
 
   void update(float dt) {
     // Updates the state of the object (position, velocity, acceleration, netForce)
-    
+        
     acceleration.add(PVector.mult(PVector.div(netForce, mass), dt));
     velocity.add(PVector.mult(acceleration, dt));
+    
+    //if (abs(position.x - PVector.add(position, PVector.mult(velocity, dt)).x) > 1) {
+    //  position.add(PVector.mult(velocity, dt));
+    //}
+    
     position.add(PVector.mult(velocity, dt));
     acceleration.mult(0);
-    netForce.mult(0);
-    
-    //velocity.x = velocity.x + acceleration.x * dt;
-    //velocity.y = velocity.y + acceleration.y * dt;
-    //position.x = position.x + velocity.x * dt;
-    //position.y = position.y + velocity.y * dt;
-    
-    ////accel.x = accel.x + (forces.x / mass) * dt; // ???
-    
-    
+    netForce.mult(0);  
   }
   
   void show() {

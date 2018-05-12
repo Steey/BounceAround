@@ -1,0 +1,20 @@
+keyPressed() {
+   if (key == 'd') {
+      numKeyPressed++;
+      FORCE_FLAG = true; 	
+   }
+}
+
+keyReleased() {
+   if (key == 'd') {
+      FORCE_FLAG = false;
+   }
+}
+
+
+dt = 0.1;
+ACC.x = 10;
+VEL.x = ? + 1;
+POS.x = 750 + ?+1;
+
+THINK ABOUT IT
