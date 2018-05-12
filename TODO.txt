@@ -7,5 +7,4 @@ TO DO:
 * Rework the ball control to improve input responsiveness
 * Expand the README
 * Convert TODO.txt to Github Project or Milestones?
-* Organize the files in folders (like src)
 * Add game modes (Play, Level editor, etc...)
