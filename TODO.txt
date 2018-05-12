@@ -1,4 +1,11 @@
 TO DO:
-*Add game modes (Play, Create, ...)
-*Fix incorrect physics updating
-*Add force and mass
+
+* Add proper complex object collision detection and handling OR just implement collision detection for basic shapes (like ELLIPSE, RECT, LINE etc.)
+* Add object texturing OR just display an image in place of the object (but maintain collision box of a proper PShape idk)
+* Implement a system handling the variable game FPS vs display FPS
+* Rework the jump mechanic (so that it's impossible to jump again in mid air)
+* Rework the ball control to improve input responsiveness
+* Expand the README
+* Convert TODO.txt to Github Project or Milestones?
+* Organize the files in folders (like src)
+* Add game modes (Play, Level editor, etc...)
