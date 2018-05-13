@@ -5,6 +5,5 @@ TO DO:
 * Implement a system handling the variable game FPS vs display FPS
 * Rework the jump mechanic (so that it's impossible to jump again in mid air)
 * Rework the ball control to improve input responsiveness
-* Expand the README
 * Convert TODO.txt to Github Project or Milestones?
 * Add game modes (Play, Level editor, etc...)
