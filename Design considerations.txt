@@ -1,0 +1,22 @@
+Here are some thoughts about how the game code should be structured:
+------------------------------------------------------------------------
+
+Basically I'm trying to program this game in an OO way. Thus the game should consist of objects that interact with one another.
+
+Let's consider what objects are already programmed:
+- Game - the entirety of the application. Essentially everything mashed together.
+- Ball - a real, controllable boundy object. Currently only one in existence.
+- GameObject - the attempted generic object, which all specific objects inherit from.
+
+The three above produce a working prototype of a bouncing user-controlled ball bounded by walls.
+However, after having spent some time pondering about program design, I now see several flaws in the current design which do not make it easy to introduce new features or changes to e.g. how things are rendered on the screen.
+
+
+Having said that I should now describe what I'd expect from the new architecture:
+- the game should have a separate Engine class/module, which would handle all the physics
+- rendering and displaying objects should be de-coupled from the engine, allowing for a more flexible graphical representation
+- tbd...
+
+
+Maybe I should write a description of the game in the OO style?
+Example: ball HAS dimensions, ball IS collidable, etc. (I'm not actually sure how it should be done)
